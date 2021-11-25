@@ -7,7 +7,7 @@
 - clone reposiotry or download and copy the root folder to public folder (LARAVEL Framwork) or any location
 - you can copy blade folder to view (Laravel Framwork)
 - include all file in folder blade (Laravel Framwork)
-- or you need call 2 file helper.js and validation.js
+- or you need call file helper.js
 
 # how to use
 ## handel error toast js
