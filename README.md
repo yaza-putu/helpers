@@ -4,8 +4,10 @@
 - require toast js
 
 # how to install
-- clone or download and copy this repository to public folder (LARAVEL Framwork) or any location
-
+- clone reposiotry or download and copy the root folder to public folder (LARAVEL Framwork) or any location
+- you can copy blade folder to view (Laravel Framwork)
+- include all file in folder blade (Laravel Framwork)
+- or you need call 2 file helper.js and validation.js
 
 # how to use
 ## handel error toast js
