@@ -154,8 +154,8 @@ function ajaxPost(url , data, button = null) {
     }).fail(function (response) {
         let res = response.responseJSON;
 
-        if (res.invalid) {
-            new handleValidation(res.invalid);
+        if (res.errors || res.invalid) {
+            new handleValidation(res.errors||res.invalid);
         } else {
             new sweetError('Terjadi Kesalahan');
         }
