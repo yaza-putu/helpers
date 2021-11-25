@@ -2,6 +2,7 @@
 - require jquery
 - require sweetalert2
 - require toast js
+- for validation form only work on bootstrap
 
 # how to install
 - clone reposiotry or download and copy the root folder to public folder (LARAVEL Framwork) or any location
