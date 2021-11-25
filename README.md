@@ -1,6 +1,4 @@
-# helpers
-
-# important
+# Important
 - require jquery
 - require sweetalert2
 - require toast js
