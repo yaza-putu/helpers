@@ -3,6 +3,10 @@
 - require sweetalert2
 - require toast js
 
+# how to install
+- clone or download and copy this repository to public folder (LARAVEL Framwork) or any location
+
+
 # how to use
 ## handel error toast js
 - function
