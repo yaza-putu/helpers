@@ -6,6 +6,57 @@
 - require toast js
 
 # how to use
+## handel error toast js
+- function
+```javascript
+// toast error
+function toastError(message, position = 'top-right') {
+    $.toast({
+        heading: 'Error',
+        text: message,
+        position: position,
+        stack: false,
+        icon: 'error',
+        bgColor: '#ee5253',
+        textColor: 'white',
+        loaderBg: '#ff6b6b'
+    })
+}
+```
+
+## handel success toast js
+- function
+```javascript
+function toastSuccess(message, position = 'top-right') {
+    $.toast({
+        heading: 'Success',
+        text: message,
+        position: position,
+        stack: false,
+        icon: 'success',
+        bgColor: '#10ac84',
+        textColor: 'white',
+        loaderBg: '#1dd1a1'
+    })
+}
+```
+
+## handel warning toast js
+- function
+```javascript
+function toastWarning(message, position = 'top-right') {
+    $.toast({
+        heading: 'Warning',
+        text: message,
+        position: position,
+        stack: false,
+        icon: 'warning',
+        bgColor: '#cc8e35',
+        textColor: 'white',
+        loaderBg: '#ffb142'
+    })
+}
+```
 ## handel error sweet alert
 - function
 ```javascript
@@ -115,8 +166,8 @@ function ajaxPost(url , data, button = null) {
     }).fail(function (response) {
         let res = response.responseJSON;
 
-        if (res.invalid) {
-            new handleValidation(res.invalid);
+        if (res.errors || res.invalid) {
+            new handleValidation(res.errors||res.invalid);
         } else {
             new sweetError('Terjadi Kesalahan');
         }
@@ -202,7 +253,7 @@ function ajaxDel(url, id, table = null) {
                 dataType: 'json',
                 success: function (res) {
                     if (res.success == true) {
-                       new sweetSuccess(res.message, null);
+                       new toastSuccess(res.message);
                        if(table !== null)
                        {
                         reloadTable(table);
