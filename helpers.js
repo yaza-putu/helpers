@@ -75,7 +75,7 @@ function sweetSuccess(message, url = null, reload = false) {
 }
 
 // toast success
-function toastSuccess(message, position = 'top-right') {
+function toastSuccess(message, position = 'bottom-center') {
     $.toast({
         heading: 'Success',
         text: message,
@@ -89,7 +89,7 @@ function toastSuccess(message, position = 'top-right') {
 }
 
 // toast error
-function toastError(message, position = 'top-right') {
+function toastError(message, position = 'bottom-center') {
     $.toast({
         heading: 'Error',
         text: message,
@@ -103,7 +103,7 @@ function toastError(message, position = 'top-right') {
 }
 
 // toast warning
-function toastWarning(message, position = 'top-right') {
+function toastWarning(message, position = 'bottom-center') {
     $.toast({
         heading: 'Warning',
         text: message,
