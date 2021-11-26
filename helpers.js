@@ -75,7 +75,7 @@ function sweetSuccess(message, url = null, reload = false) {
 }
 
 // toast success
-function toastSuccess(message, position = 'bottom-center') {
+function toastSuccess(message, position = 'top-right') {
     $.toast({
         heading: 'Success',
         text: message,
@@ -89,7 +89,7 @@ function toastSuccess(message, position = 'bottom-center') {
 }
 
 // toast error
-function toastError(message, position = 'bottom-center') {
+function toastError(message, position = 'top-right') {
     $.toast({
         heading: 'Error',
         text: message,
@@ -103,7 +103,7 @@ function toastError(message, position = 'bottom-center') {
 }
 
 // toast warning
-function toastWarning(message, position = 'bottom-center') {
+function toastWarning(message, position = 'top-right') {
     $.toast({
         heading: 'Warning',
         text: message,
@@ -113,6 +113,16 @@ function toastWarning(message, position = 'bottom-center') {
         bgColor: '#cc8e35',
         textColor: 'white',
         loaderBg: '#ffb142'
+    })
+}
+
+// snackbar success
+function snackbar(message) {
+    Snackbar.show({
+        text: message,
+        actionTextColor: '#FFFFFF',
+        pos: 'bottom-center',
+        actionText: 'Close'
     })
 }
 

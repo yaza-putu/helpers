@@ -11,6 +11,21 @@
 - or you need call file helper.js
 
 # how to use
+## snackbar
+- function
+```javascript
+function snackbar(message) {
+    Snackbar.show({
+        text: message,
+        actionTextColor: '#FFFFFF',
+        pos: 'bottom-center',
+        actionText: 'Close'
+    })
+}
+
+// call
+new snackbar(message)
+```
 ## handel error toast js
 - function
 ```javascript
