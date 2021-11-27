@@ -1,5 +1,5 @@
 # Important
-- require jquery
+- require jquery 3.*
 - require sweetalert2
 - require toast js
 - for validation form only work on bootstrap
@@ -12,6 +12,7 @@
 
 # how to use
 ## Notification with sanckbar
+![snackbar](https://res.cloudinary.com/dk0053zbe/image/upload/v1637983552/helper/Screen_Shot_2021-11-27_at_11.20.16_vnkjhx.png)
 ### snackbar
 - function
 ```javascript
@@ -29,6 +30,7 @@ new snackbar(message)
 ```
 
 ## Notification with notify.js
+![notify](https://res.cloudinary.com/dk0053zbe/image/upload/v1637983552/helper/Screen_Shot_2021-11-27_at_11.19.35_k5y7y2.png)
 ### handel success notify
 - function
 ```javascript
@@ -92,6 +94,7 @@ function notifyError(message) {
 new notifyError(message)
 ```
 ## Notification with Toast
+![toast](https://res.cloudinary.com/dk0053zbe/image/upload/v1637983552/helper/Screen_Shot_2021-11-27_at_11.19.57_mvd2rh.png)
 ### handel error toast js
 - function
 ```javascript
@@ -150,6 +153,7 @@ function toastWarning(message, position = 'top-right') {
 new toastWarning(messsage)
 ```
 ## Notification with sweetalert2
+![sweetalert2](https://res.cloudinary.com/dk0053zbe/image/upload/v1637983552/helper/Screen_Shot_2021-11-27_at_11.20.37_kjerww.png)
 ### handel error sweet alert
 - function
 ```javascript
