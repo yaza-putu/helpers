@@ -5,13 +5,14 @@
 - for validation form only work on bootstrap
 
 # how to install
-- clone repository or download and copy the root folder to public folder (LARAVEL Framwork) or any location
+- clone repository or download and copy the root folder to public folder (LARAVEL Framwork) or any location is public
 - you can copy blade folder to view (Laravel Framwork)
 - include all file in folder blade (Laravel Framwork)
-- or you need call file helper.js
+- or you need call helper.js on script src
 
 # how to use
-## snackbar
+## Notification with sanckbar
+### snackbar
 - function
 ```javascript
 function snackbar(message) {
@@ -26,7 +27,72 @@ function snackbar(message) {
 // call
 new snackbar(message)
 ```
-## handel error toast js
+
+## Notification with notify.js
+### handel success notify
+- function
+```javascript
+function notifySuccess(message) {
+    notify({
+        type: "success", //alert | success | error | warning | info
+        title: "Success",
+        position: {
+            x: "right", //right | left | center
+            y: "top" //top | bottom | center
+        },
+        icon: '<img src="'+assets+'helpers/img/paper_plane.png" />',
+        message: message,
+        autoHide: true, //true | false
+        delay: 2500, //number ms
+    });
+}
+// call
+new notifySuccess(message)
+```
+### handel warning notify
+- function
+```javascript
+function notifyWarning(message) {
+    notify({
+        type: "warning", //alert | success | error | warning | info
+        title: "Warning",
+        theme: "dark-theme",
+        position: {
+            x: "right", //right | left | center
+            y: "top" //top | bottom | center
+        },
+        icon: '<img src="'+assets+'helpers/img/paper_plane.png" />',
+        message: message,
+        autoHide: true, //true | false
+        delay: 2500, //number ms
+    });
+}
+// call
+new notifyWarning(message)
+```
+### handel error notify
+- function
+```javascript
+function notifyError(message) {
+    notify({
+        type: "error", //alert | success | error | warning | info
+        title: "Error",
+        theme: "dark-theme",
+        position: {
+            x: "right", //right | left | center
+            y: "top" //top | bottom | center
+        },
+        icon: '<img src="'+assets+'helpers/img/paper_plane.png" />',
+        message: message,
+        autoHide: true, //true | false
+        delay: 2500, //number ms
+    });
+}
+// call
+new notifyError(message)
+```
+## Notification with Toast
+### handel error toast js
 - function
 ```javascript
 // toast error
@@ -42,9 +108,11 @@ function toastError(message, position = 'top-right') {
         loaderBg: '#ff6b6b'
     })
 }
+// call
+new toastError(message)
 ```
 
-## handel success toast js
+### handel success toast js
 - function
 ```javascript
 function toastSuccess(message, position = 'top-right') {
@@ -59,9 +127,11 @@ function toastSuccess(message, position = 'top-right') {
         loaderBg: '#1dd1a1'
     })
 }
+// call
+new toastSuccess(message)
 ```
 
-## handel warning toast js
+### handel warning toast js
 - function
 ```javascript
 function toastWarning(message, position = 'top-right') {
@@ -76,8 +146,11 @@ function toastWarning(message, position = 'top-right') {
         loaderBg: '#ffb142'
     })
 }
+// call
+new toastWarning(messsage)
 ```
-## handel error sweet alert
+## Notification with sweetalert2
+### handel error sweet alert
 - function
 ```javascript
 function sweetError(message) {
@@ -93,7 +166,7 @@ function sweetError(message) {
 new sweetError(message);
 ```
 
-## Success Message Sweet alert
+### Success Message Sweet alert
 - function
 ```javascript
 function sweetSuccess(message, url = null, reload = false) {

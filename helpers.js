@@ -19,7 +19,7 @@ function visiblePassword(button, idPassword) {
 $('.required').append(' <span style="color:red">*</span>');
 
 // assets url
-const assets = $('#asset-url').val();
+const assets = $('#asset-url').val() ? $('#asset-url').val() : location.protocol + '//' + location.host + '/';
 
 
 // loading
@@ -116,7 +116,7 @@ function toastWarning(message, position = 'top-right') {
     })
 }
 
-// snackbar success
+// snackbar
 function snackbar(message) {
     Snackbar.show({
         text: message,
@@ -124,6 +124,55 @@ function snackbar(message) {
         pos: 'bottom-center',
         actionText: 'Close'
     })
+}
+
+// notify success
+function notifySuccess(message) {
+    notify({
+        type: "success", //alert | success | error | warning | info
+        title: "Success",
+        position: {
+            x: "right", //right | left | center
+            y: "top" //top | bottom | center
+        },
+        icon: '<img src="'+assets+'helpers/img/paper_plane.png" />',
+        message: message,
+        autoHide: true, //true | false
+        delay: 2500, //number ms
+    });
+}
+
+// notify warning
+function notifyWarning(message) {
+    notify({
+        type: "warning", //alert | success | error | warning | info
+        title: "Warning",
+        theme: "dark-theme",
+        position: {
+            x: "right", //right | left | center
+            y: "top" //top | bottom | center
+        },
+        icon: '<img src="'+assets+'helpers/img/paper_plane.png" />',
+        message: message,
+        autoHide: true, //true | false
+        delay: 2500, //number ms
+    });
+}
+// notify error
+function notifyError(message) {
+    notify({
+        type: "error", //alert | success | error | warning | info
+        title: "Error",
+        theme: "dark-theme",
+        position: {
+            x: "right", //right | left | center
+            y: "top" //top | bottom | center
+        },
+        icon: '<img src="'+assets+'helpers/img/paper_plane.png" />',
+        message: message,
+        autoHide: true, //true | false
+        delay: 2500, //number ms
+    });
 }
 
 
@@ -235,7 +284,7 @@ function ajaxDel(url, id, table = null) {
                 dataType: 'json',
                 success: function (res) {
                     if (res.success == true) {
-                        new toastSuccess(res.message);
+                        new notifySuccess(res.message);
                         if(table !== null)
                         {
                             reloadTable(table);
