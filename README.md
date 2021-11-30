@@ -1,3 +1,38 @@
+# Table Of Content Helper
+### How to Install
+- [Read me please](#important)
+- [step by step install](#how-to-install)
+#### Notification Javascript
+- [Snackbar](#notification-with-snackbar)
+    - [snackbar default](#snackbar-default)
+    - [snackbar success](#snackbar-success)
+    - [snackbar warning](#snackbar-warning)
+    - [snackbar error](#snackbar-error)
+- [Notify](#notification-with-notifyjs)
+    - [notify success](#handel-success-notify)
+    - [notify error](#handel-error-notify)
+    - [notify warning](#handel-warning-notify)
+- [Toast](#notification-with-toast)
+    - [toast success](#handel-success-toast-js)
+    - [toast error](#handel-error-toast-js)
+    - [toast warning](#handel-warning-toast-js)
+- [Sweetalert2](#notification-with-sweetalert2)
+    - [sweetalert success](#success-message-sweet-alert)
+    - [sweetalert error](#handel-error-sweet-alert)
+    
+#### handel ajax
+- [ajax get](#ajax-get)
+- [ajax post](#ajax-post)
+- [ajax delete](#ajax-delete)
+
+#### other
+- [reload datatable](#reload-datatable)
+- [auto label required](#label-required)
+- [form validation handel](#validation-handel)
+- [visible or hidden text password](#visible-password)
+- [auto convert input currency](#auto-convert-input-currency)
+- [convert currency](#convert-currency)
+
 # Important
 - require jquery 3.*
 - require sweetalert2
@@ -11,9 +46,9 @@
 - or you need call helper.js on script src
 
 # how to use
-## Notification with sanckbar
+## Notification with snackbar
 ![snackbar](https://res.cloudinary.com/dk0053zbe/image/upload/v1637983552/helper/Screen_Shot_2021-11-27_at_11.20.16_vnkjhx.png)
-### snackbar
+### snackbar Default
 - function
 ```javascript
 function snackbar(message) {
@@ -27,6 +62,60 @@ function snackbar(message) {
 
 // call
 new snackbar(message)
+```
+
+### snackbar Success
+- function
+```javascript
+function snackbarSuccess(message) {
+    Snackbar.show({
+        text: message,
+        actionTextColor: '#155724',
+        pos: 'bottom-center',
+        actionText: 'Close',
+        backgroundColor: '#d4edda',
+        textColor: '#155724'
+    })
+}
+
+// call
+new snackbarSuccess(message)
+```
+
+### snackbar Warning
+- function
+```javascript
+function snackbarWarning(message) {
+    Snackbar.show({
+        text: message,
+        actionTextColor: '#856404',
+        pos: 'bottom-center',
+        actionText: 'Close',
+        backgroundColor: '#fff3cd',
+        textColor: '#856404'
+    })
+}
+
+// call
+new snackbarWarning(message)
+```
+
+### snackbar Error
+- function
+```javascript
+function snackbarError(message) {
+    Snackbar.show({
+        text: message,
+        actionTextColor: '#721c24',
+        pos: 'bottom-center',
+        actionText: 'Close',
+        backgroundColor: '#f8d7da',
+        textColor: '#721c24'
+    })
+}
+
+// call
+new snackbarError(message)
 ```
 
 ## Notification with notify.js
@@ -416,4 +505,54 @@ new visiblePassword('#show-password','#password');
 ## enable tooltip bootstrap v4
 ```javascript
 $('[data-toggle="tooltip"]').tooltip();
+```
+
+## Set Query Param url
+```javascript
+function setParam(url, param, value) {
+    param = encodeURIComponent(param);
+    var r = "([&?]|&amp;)" + param + "\\b(?:=(?:[^&#]*))*";
+    var a = document.createElement('a');
+    var regex = new RegExp(r);
+    var str = param + (value ? "=" + encodeURIComponent(value) : "");
+    a.href = url;
+    var q = a.search.replace(regex, "$1"+str);
+    if (q === a.search) {
+        a.search += (a.search ? "&" : "") + str;
+    } else {
+        a.search = q;
+    }
+    return a.href;
+}
+// call
+new setParam(url, param, value);
+```
+
+## auto convert input currency
+```javascript
+$('.convert-currency').on('keyup', function () {
+    $(this).val(formatRupiah(this.value, "Rp. "));
+})
+```
+
+## convert currency
+```javascript
+function formatRupiah(angka, prefix) {
+    var number_string = angka.replace(/[^,\d]/g, "").toString(),
+        split = number_string.split(","),
+        sisa = split[0].length % 3,
+        rupiah = split[0].substr(0, sisa),
+        ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if (ribuan) {
+        separator = sisa ? "." : "";
+        rupiah += separator + ribuan.join(".");
+    }
+
+    rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+    return prefix == undefined ? rupiah : rupiah ? "Rp. " + rupiah : "";
+}
+// call
+new formatRupiah(angka, prefix)
 ```

@@ -116,13 +116,49 @@ function toastWarning(message, position = 'top-right') {
     })
 }
 
-// snackbar
+// snackbar default
 function snackbar(message) {
     Snackbar.show({
         text: message,
         actionTextColor: '#FFFFFF',
         pos: 'bottom-center',
         actionText: 'Close'
+    })
+}
+
+// snackbar success
+function snackbarSuccess(message) {
+    Snackbar.show({
+        text: message,
+        actionTextColor: '#155724',
+        pos: 'bottom-center',
+        actionText: 'Close',
+        backgroundColor: '#d4edda',
+        textColor: '#155724'
+    })
+}
+
+// snackbar warning
+function snackbarWarning(message) {
+    Snackbar.show({
+        text: message,
+        actionTextColor: '#856404',
+        pos: 'bottom-center',
+        actionText: 'Close',
+        backgroundColor: '#fff3cd',
+        textColor: '#856404'
+    })
+}
+
+// snackbar error
+function snackbarError(message) {
+    Snackbar.show({
+        text: message,
+        actionTextColor: '#721c24',
+        pos: 'bottom-center',
+        actionText: 'Close',
+        backgroundColor: '#f8d7da',
+        textColor: '#721c24'
     })
 }
 
