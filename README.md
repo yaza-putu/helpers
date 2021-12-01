@@ -42,6 +42,7 @@
 - require jquery 3.*
 - require sweetalert2
 - require toast js
+- require datatable
 - for validation form only work on bootstrap
 
 # how to install
