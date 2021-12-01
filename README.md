@@ -25,6 +25,11 @@
 - [ajax post](#ajax-post)
 - [ajax delete](#ajax-delete)
 
+#### datatables javascript
+- [Datatable](#datatables)
+    - [reload datatable](#reload-datatable)
+    - [instance call datatable with template](#template-datatable)
+
 #### other
 - [reload datatable](#reload-datatable)
 - [auto label required](#label-required)
@@ -303,7 +308,8 @@ new sweetSuccess(message);
 ## validation handel
 - read doc <a href="https://gist.github.com/yaza-putu/0e8c13100e1ef9f29306c8c4ef07d3c1">Validation Error Handel</a>
 
-## reload DataTable
+## Datatables
+### reload DataTable
 - function
 ```javascript
 function reloadTable(id) {
@@ -315,6 +321,55 @@ function reloadTable(id) {
 - call
 ```javascript
 new reloadTable('#table');
+```
+
+### template datatable
+```javascript
+function datatable(table, url, columns= [], columnDefs = [], responsive = true) {
+    $(table).DataTable({
+        ordering: true,
+        serverSide: true,
+        processing: true,
+        autoWidth: responsive ? false : true,
+        responsive: responsive,
+        oLanguage: {sProcessing: loadingSpiner},
+        ajax: {
+            'url': url,
+        },
+        drawCallback: function (settings) {
+            // bootrap 3 or 4
+            $('[data-toggle="tooltip"]').tooltip();
+            // bootstrap 5
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+        },
+        columns: columns,
+        columnDefs: columnDefs,
+    });
+}
+// call
+    // example config datatable
+    // setup columns
+    let columns = [
+        {data: 'DT_RowIndex', name: 'DT_RowIndex', width: '10px', orderable: false, searchable: false},
+        {data: 'name', name: 'name'},
+        {data: 'image', name: 'image'},
+        {data: 'opsi', name: 'opsi', orderable: false, searchable: false},
+    ];
+    // config columnDefs
+    let columnDefs = [
+        {responsivePriority: 1, targets: 0},
+        {responsivePriority: 2, targets: 1},
+        {responsivePriority: 3, targets: 3},
+        {responsivePriority: 4, targets: 2},
+    ];
+    // set url
+    let url = $('#table-url').val();
+    // set tableId
+    let table = '#table';  
+    new datatable(table, url, columns, columnDefs);
 ```
 
 ## ajax post
