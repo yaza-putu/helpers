@@ -265,9 +265,7 @@ function ajaxPost(url , data, button = null) {
             }
         },
         complete: function () {
-            if (button !== null) {
-                $(button).empty().append(valButton).prop('disabled', false).css('cursor', 'auto');
-            }
+            // on complate
         }
     }).done(function (response) {
         // write your script
@@ -281,6 +279,10 @@ function ajaxPost(url , data, button = null) {
             new sweetError('Terjadi Kesalahan');
         }
 
+    }).always(function () {
+        if (button !== null) {
+            $(button).empty().append(valButton).prop('disabled', false).css('cursor', 'auto');
+        }
     });
 
     return ajax;
