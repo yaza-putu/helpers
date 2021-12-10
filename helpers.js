@@ -294,18 +294,95 @@ function ajaxPost(url , data, button = null) {
     return ajax;
 }
 
+// ajax post file
+function ajaxPostFile(url, data, button = null, showLoading = '#loading-body') {
+    var loadingHtml = '<div class="progress" style="display:none;">\n' +
+    '<div class="progress-bar bg-danger progress-bar-striped\n' +
+    'active" role="progressbar"\n' +
+    'aria-valuemin="0" aria-valuemax="100" style="width:0%">\n' +
+    '0%\n' +
+    '</div>\n' +
+    '</div>';
+
+    // create loading
+    $(showLoading).empty().html(loadingHtml);
+
+    // send data
+    if (button !== null) {
+        var valButton = $(button).html();
+    }
+
+    var ajax = $.ajax({
+        type: 'post',
+        url: url,
+        data: data,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        beforeSend: function () {
+            if (button !== null) {
+                $(button).empty().append(loadingSpiner).prop('disabled', true).css('cursor', 'wait');
+            }
+            $('.progress').fadeIn();
+        },
+        complete: function () {
+            // on complate
+        },
+        xhr: function() {
+            var xhr = new window.XMLHttpRequest();
+            xhr.upload.addEventListener("progress", function(evt) {
+                if (evt.lengthComputable) {
+                    var percentComplete = evt.loaded / evt.total;
+                    percentComplete = parseInt(percentComplete * 100);
+                    $('.progress-bar').width(percentComplete+'%');
+                    $('.progress-bar').html(percentComplete+'%');
+                }
+            }, false);
+            return xhr;
+        }
+    }).done(function (response) {
+        // write your script
+
+    }).fail(function (response) {
+        let res = response.responseJSON;
+
+        if (res.errors || res.invalid) {
+            new handleValidation(res.errors||res.invalid);
+        } else {
+            new sweetError('Terjadi Kesalahan');
+        }
+
+    }).always(function () {
+        if (button !== null) {
+            $(button).empty().append(valButton).prop('disabled', false).css('cursor', 'auto');
+        }
+        $('.progress').fadeOut();
+    });
+
+    return ajax;
+}
+
 // ajax Get
-function ajaxGet(url) {
+function ajaxGet(url, blockUi = false) {
     var ajax = $.ajax({
         type: 'get',
         url: url,
         dataType: 'json',
         contentType: false,
         processData: false,
+        beforeSend: function () {
+            if (blockUi == true) {
+                new showBlockUI();
+            }
+        }
     }).done(function (response) {
 
     }).fail(function (response) {
         new sweetError('Terjadi Kesalahan');
+    }).always(function () {
+        if (blockUi == true) {
+            new hideBlockUI();
+        }
     });
     return ajax;
 }
@@ -413,4 +490,26 @@ function datatable(table, url, columns= [], columnDefs = [], responsive = true) 
         columns: columns,
         columnDefs: columnDefs,
     });
+}
+
+// show block UI
+function showBlockUI() {
+    $.blockUI({
+        message: 'Mohon Tunggu Sebentar ...',
+        css: {
+            'z-index': 10002,
+            border: 'none',
+            padding: '15px',
+            backgroundColor: '#000',
+            '-webkit-border-radius': '10px',
+            '-moz-border-radius': '10px',
+            opacity: .5,
+            color: '#fff',
+        }
+    });
+}
+
+// hided block UI
+function hideBlockUI() {
+    $.unblockUI();
 }

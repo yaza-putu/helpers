@@ -5,5 +5,6 @@
 <script src="{{ asset('helpers/libs/snackbar/snackbar.min.js') }}"></script>
 <script src="{{ asset('helpers/libs/notify/js/jquery.notify.min.js') }}"></script>
 <script src="{{ asset('helpers/libs/datatables-bs-4/datatables.min.js') }}"></script>
+<script src="{{ asset('helpers/libs/blockUI/jquery.blockUI.js') }}"></script>
 {{-- datatable for bootstrap 5 --}}
 {{--<script src="{{ asset('helpers/libs/datatables-bs-5/datatables.min.js') }}"></script>--}}
