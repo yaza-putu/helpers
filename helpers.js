@@ -7,6 +7,12 @@ $.ajaxSetup({
     }
 });
 
+// auto reset form on hide modal
+$('.modal').on('hidden.bs.modal', function(){
+    $(this).find('form')[0].reset();
+    $('#id').val('');
+});
+
 //show hide password
 function visiblePassword(button, idPassword) {
     $(document).on('click', button, function() {
