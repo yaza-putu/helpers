@@ -48,10 +48,11 @@
 - for validation form only work on bootstrap
 
 # how to install
-- clone repository or download and copy the root folder to public folder (LARAVEL Framwork) or any location is public
+- Download and copy the root folder to public folder (LARAVEL Framwork) or any location is public
 - you can copy blade folder to view (Laravel Framwork)
 - include all file in folder blade (Laravel Framwork)
-- or you need call helper.js on script src
+- or include all file in folder libs
+- and include helper.js 
 
 # how to use
 ## Notification with snackbar
