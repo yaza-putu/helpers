@@ -49,7 +49,6 @@
 - include file libs-core.min.js & libs-core.min.css
 - inlcude helper.js
 - config assets url at line 27 in file helper.js
-```
 
 
 # how to use
