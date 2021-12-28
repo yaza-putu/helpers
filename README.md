@@ -42,17 +42,13 @@
 
 # Important
 - require jquery 3.*
-- require sweetalert2
-- require toast js
-- require datatable
-- for validation form only work on bootstrap
+- current support only framwork css bootstrap for auto handel validations form
 
 # how to install
 - Download and copy the root folder to public folder (LARAVEL Framwork) or any location is public
-- you can copy blade folder to view (Laravel Framwork)
-- include all file in folder blade (Laravel Framwork)
-- or include all file in folder libs
-- and include helper.js 
+- include file libs-core.min.js & libs-core.min.css
+- inlcude helper.js or helper.min.js
+
 
 # how to use
 ## Notification with snackbar
