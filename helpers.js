@@ -178,7 +178,7 @@ function notifySuccess(message) {
         },
         icon: '<img src="'+assets+'helpers/img/paper_plane.png" />',
         message: message,
-        autoHide: false, //true | false
+        autoHide: true, //true | false
         delay: 2500, //number ms
     });
 }
