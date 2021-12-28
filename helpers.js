@@ -1,5 +1,4 @@
 // read how to use this helper : https://gist.github.com/yaza-putu/6cac370a6fafcc05c3f964427e370504
-
 // add csrf token header ajax sending
 $.ajaxSetup({
     headers: {
@@ -25,8 +24,8 @@ function visiblePassword(button, idPassword) {
 $('.required').append(' <span style="color:red">*</span>');
 
 // assets url
-const assets = $('#asset-url').val() ? $('#asset-url').val() : location.protocol + '//' + location.host + '/';
-
+var configAssetUrl = $('#asset-url').val() || null;
+const assets = configAssetUrl ? configAssetUrl : location.protocol + '//' + location.host + '/';
 
 // loading
 var loadingSpiner = '<img src="'+assets+'/helpers/img/loadingCircle.gif" style="width: 22px;">';
