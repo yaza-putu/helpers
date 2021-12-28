@@ -55,7 +55,7 @@
 ## Notification with snackbar
 ![snackbar](https://res.cloudinary.com/dk0053zbe/image/upload/v1637983552/helper/Screen_Shot_2021-11-27_at_11.20.16_vnkjhx.png)
 ### snackbar Default
-- function
+- function in helper.js
 ```javascript
 function snackbar(message) {
     Snackbar.show({
@@ -71,7 +71,7 @@ new snackbar(message)
 ```
 
 ### snackbar Success
-- function
+- function in helper.js
 ```javascript
 function snackbarSuccess(message) {
     Snackbar.show({
@@ -89,7 +89,7 @@ new snackbarSuccess(message)
 ```
 
 ### snackbar Warning
-- function
+- function in helper.js
 ```javascript
 function snackbarWarning(message) {
     Snackbar.show({
@@ -107,7 +107,7 @@ new snackbarWarning(message)
 ```
 
 ### snackbar Error
-- function
+- function in helper.js
 ```javascript
 function snackbarError(message) {
     Snackbar.show({
@@ -127,7 +127,7 @@ new snackbarError(message)
 ## Notification with notify.js
 ![notify](https://res.cloudinary.com/dk0053zbe/image/upload/v1637983552/helper/Screen_Shot_2021-11-27_at_11.19.35_k5y7y2.png)
 ### handel success notify
-- function
+- function in helper.js
 ```javascript
 function notifySuccess(message) {
     notify({
@@ -147,7 +147,7 @@ function notifySuccess(message) {
 new notifySuccess(message)
 ```
 ### handel warning notify
-- function
+- function in helper.js
 ```javascript
 function notifyWarning(message) {
     notify({
@@ -168,7 +168,7 @@ function notifyWarning(message) {
 new notifyWarning(message)
 ```
 ### handel error notify
-- function
+- function in helper.js
 ```javascript
 function notifyError(message) {
     notify({
@@ -191,7 +191,7 @@ new notifyError(message)
 ## Notification with Toast
 ![toast](https://res.cloudinary.com/dk0053zbe/image/upload/v1637983552/helper/Screen_Shot_2021-11-27_at_11.19.57_mvd2rh.png)
 ### handel error toast js
-- function
+- function in helper.js
 ```javascript
 // toast error
 function toastError(message, position = 'top-right') {
@@ -211,7 +211,7 @@ new toastError(message)
 ```
 
 ### handel success toast js
-- function
+- function in helper.js
 ```javascript
 function toastSuccess(message, position = 'top-right') {
     $.toast({
@@ -230,7 +230,7 @@ new toastSuccess(message)
 ```
 
 ### handel warning toast js
-- function
+- function in helper.js
 ```javascript
 function toastWarning(message, position = 'top-right') {
     $.toast({
@@ -250,7 +250,7 @@ new toastWarning(messsage)
 ## Notification with sweetalert2
 ![sweetalert2](https://res.cloudinary.com/dk0053zbe/image/upload/v1637983552/helper/Screen_Shot_2021-11-27_at_11.20.37_kjerww.png)
 ### handel error sweet alert
-- function
+- function in helper.js
 ```javascript
 function sweetError(message) {
     Swal.fire({
@@ -266,7 +266,7 @@ new sweetError(message);
 ```
 
 ### Success Message Sweet alert
-- function
+- function in helper.js
 ```javascript
 function sweetSuccess(message, url = null, reload = false) {
     if (url !== null) {
@@ -311,7 +311,7 @@ new sweetSuccess(message);
 
 ## Datatables
 ### reload DataTable
-- function
+- function in helper.js
 ```javascript
 function reloadTable(id) {
     var table = $(id).DataTable();
@@ -374,7 +374,7 @@ function datatable(table, url, columns= [], columnDefs = [], responsive = true) 
 ```
 
 ## ajax post
-- function
+- function in helper.js
 ```javascript
 // send data with method post
 function ajaxPost(url , data, button = null) {
@@ -442,7 +442,7 @@ new ajaxPost(url, formData)
 ```
 
 ## Ajax Post File with progress bar
-- function
+- function in helper.js
 ```javascript
 function ajaxPostFile(url, data, button = null, showLoading = '#loading-body') {
     var loadingHtml = '<div class="progress" style="display:none;">\n' +
@@ -520,7 +520,7 @@ new ajaxPostFile(url, data, button, showLoading)
 ```
 
 ## ajax get
-- function
+- function in helper.js
 ```javascript
 function ajaxGet(url) {
     var ajax = $.ajax({
@@ -554,7 +554,7 @@ new ajaxGet(url)
 ```
 
 ## Ajax Delete
-- function
+- function in helper.js
 ```javascript
 function ajaxDel(url, id, table = null) {
     Swal.fire({
@@ -691,7 +691,7 @@ function formatRupiah(angka, prefix) {
 new formatRupiah(angka, prefix)
 ```
 ## Show Block UI
-- function
+- function in helper.js
 ```javascript
 function showBlockUI() {
     $.blockUI({
@@ -713,7 +713,7 @@ new showBlockUI();
 ```
 
 ## Hide block UI
-- function
+- function in helper.js
 ```javascript
 // hided block UI
 function hideBlockUI() {
