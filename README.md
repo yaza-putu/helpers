@@ -48,7 +48,7 @@
 - Download and copy the root folder to public folder (LARAVEL Framwork) or any location is public
 - include file libs-core.min.js & libs-core.min.css
 - inlcude helper.js
-- config assets url at line 27 in file helper.js
+- config assets url at line 27 in file helper.js (Optional)
 
 
 # how to use
