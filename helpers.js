@@ -28,7 +28,8 @@ var configAssetUrl = $('#asset-url').val() || null;
 const assets = configAssetUrl ? configAssetUrl : location.protocol + '//' + location.host + '/';
 
 // loading
-var loadingSpiner = '<img src="'+assets+'/helpers/img/loadingCircle.gif" style="width: 22px;">';
+var loadingSpiner = '<img src="https://cdn.jsdelivr.net/gh/yaza-putu/helpers@master/img/loadingCircle.gif" style="width: 22px;">';
+var paperPlaneImg = '<img src="https://cdn.jsdelivr.net/gh/yaza-putu/helpers@master/img/paper_plane.png" />';
 
 // handel error function
 function sweetError(message) {
@@ -176,7 +177,7 @@ function notifySuccess(message) {
             x: "right", //right | left | center
             y: "top" //top | bottom | center
         },
-        icon: '<img src="'+assets+'helpers/img/paper_plane.png" />',
+        icon: paperPlaneImg,
         message: message,
         autoHide: true, //true | false
         delay: 2500, //number ms
@@ -193,7 +194,7 @@ function notifyWarning(message) {
             x: "right", //right | left | center
             y: "top" //top | bottom | center
         },
-        icon: '<img src="'+assets+'helpers/img/paper_plane.png" />',
+        icon: paperPlaneImg,
         message: message,
         autoHide: true, //true | false
         delay: 2500, //number ms
@@ -209,7 +210,7 @@ function notifyError(message) {
             x: "right", //right | left | center
             y: "top" //top | bottom | center
         },
-        icon: '<img src="'+assets+'helpers/img/paper_plane.png" />',
+        icon: paperPlaneImg,
         message: message,
         autoHide: true, //true | false
         delay: 2500, //number ms
