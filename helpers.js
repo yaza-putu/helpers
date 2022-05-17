@@ -24,8 +24,7 @@ function visiblePassword(button, idPassword) {
 $('.required').append(' <span style="color:red">*</span>');
 
 // assets url
-var configAssetUrl = $('#asset-url').val() || null;
-const assets = configAssetUrl ? configAssetUrl : location.protocol + '//' + location.host + '/';
+const assets = location.protocol + '//' + location.host + '/';
 
 // loading
 var loadingSpiner = '<img src="https://cdn.jsdelivr.net/gh/yaza-putu/helpers@master/img/loadingCircle.gif" style="width: 22px;">';
