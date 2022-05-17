@@ -1,3 +1,4 @@
+var versioningCdnUrl = "V1.4.17";
 // read how to use this helper : https://gist.github.com/yaza-putu/6cac370a6fafcc05c3f964427e370504
 // add csrf token header ajax sending
 $.ajaxSetup({
@@ -27,8 +28,8 @@ $('.required').append(' <span style="color:red">*</span>');
 const assets = location.protocol + '//' + location.host + '/';
 
 // loading
-var loadingSpiner = '<img src="https://cdn.jsdelivr.net/gh/yaza-putu/helpers@V1.4.14/img/loadingCircle.gif" style="width: 22px;">';
-var paperPlaneImg = '<img src="https://cdn.jsdelivr.net/gh/yaza-putu/helpers@V1.4.14/img/paper_plane.png" />';
+var loadingSpiner = '<img src="https://cdn.jsdelivr.net/gh/yaza-putu/helpers@'+versioningCdnUrl+'/img/loadingCircle.gif" style="width: 22px;">';
+var paperPlaneImg = '<img src="https://cdn.jsdelivr.net/gh/yaza-putu/helpers@'+versioningCdnUrl+'/img/paper_plane.png" />';
 
 // handel error function
 function sweetError(message) {
