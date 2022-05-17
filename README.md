@@ -52,14 +52,14 @@
 # or install via cdn
 - put css inside head
 ```html
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yaza-putu/helpers@master/libs/libs-core.min.css">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yaza-putu/helpers@V1.4.14/libs/libs-core.min.css">
 ```
 - put js helper inside body
 ```html
     <!-- remove jquery if jquery is installed -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/yaza-putu/helpers@master/libs/libs-core.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/yaza-putu/helpers@master/helpers.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/yaza-putu/helpers@V1.4.14/libs/libs-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/yaza-putu/helpers@V1.4.14/helpers.js"></script>
 ```
 
 # how to use

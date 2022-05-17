@@ -27,8 +27,8 @@ $('.required').append(' <span style="color:red">*</span>');
 const assets = location.protocol + '//' + location.host + '/';
 
 // loading
-var loadingSpiner = '<img src="https://cdn.jsdelivr.net/gh/yaza-putu/helpers@master/img/loadingCircle.gif" style="width: 22px;">';
-var paperPlaneImg = '<img src="https://cdn.jsdelivr.net/gh/yaza-putu/helpers@master/img/paper_plane.png" />';
+var loadingSpiner = '<img src="https://cdn.jsdelivr.net/gh/yaza-putu/helpers@V1.4.14/img/loadingCircle.gif" style="width: 22px;">';
+var paperPlaneImg = '<img src="https://cdn.jsdelivr.net/gh/yaza-putu/helpers@V1.4.14/img/paper_plane.png" />';
 
 // handel error function
 function sweetError(message) {
