@@ -1,4 +1,4 @@
-const versioningCdnUrl = "V2.0.3";
+const versioningCdnUrl = "V2.0.4";
 const confirmSweetFinishDefault = {
     text : "Click the ? button to return to the previous page",
     cancelButtonFirst : "Continue",
@@ -272,7 +272,7 @@ function reloadTable(id) {
 
 // ajax post
 // send data with method post
-function ajaxPost(url , data, button = null) {
+function ajaxPost(url , data, button = null, typeErrorNotification = 'sweetError') {
 
     if (button !== null) {
         var valButton = $(button).html();
@@ -302,9 +302,37 @@ function ajaxPost(url , data, button = null) {
         if (res.errors || res.invalid) {
             new handleValidation(res.errors||res.invalid);
         } else if(res.message !== undefined) {
-            new sweetError(res.message);
+            if (typeErrorNotification == 'sweetError') {
+                sweetError(res.message);
+            }
+
+            if (typeErrorNotification == 'toastError') {
+                toastError(res.message);
+            }
+
+            if (typeErrorNotification == 'snackbarError') {
+                snackbarError(res.message)
+            }
+
+            if (typeErrorNotification == 'snackbar') {
+                snackbar(res.message);
+            }
         } else {
-            new sweetError('There is an error');
+            if (typeErrorNotification == 'sweetError') {
+                sweetError('There is an error');
+            }
+
+            if (typeErrorNotification == 'toastError') {
+                toastError('There is an error');
+            }
+
+            if (typeErrorNotification == 'snackbarError') {
+                snackbarError('There is an error')
+            }
+
+            if (typeErrorNotification == 'snackbar') {
+                snackbar('There is an error');
+            }
         }
 
     }).always(function () {
@@ -411,8 +439,68 @@ function ajaxGet(url, blockUi = false) {
     return ajax;
 }
 
-// ajax Delete
+// deprecate in next release
 function ajaxDel(url, id,reload = false,typeNotification = 'sweetSuccess', table = null, confirmSweetDelete = null) {
+    const title = confirmSweetDelete == null ? confirmSweetDeleteDefault.title : confirmSweetDelete.title;
+    const body = confirmSweetDelete == null ? confirmSweetDeleteDefault.body : confirmSweetDelete.body;
+    const buttonLabel = confirmSweetDelete == null ? confirmSweetDeleteDefault.buttonLabel : confirmSweetDelete.buttonLabel;
+    const buttonConfirmColor = confirmSweetDelete == null ? confirmSweetDeleteDefault.buttonConfirmColor : confirmSweetDelete.buttonConfirmColor;
+
+    Swal.fire({
+        title: title,
+        text: body,
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: buttonConfirmColor,
+        confirmButtonText: buttonLabel
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data:{'id':id},
+                dataType: 'json',
+                success: function (res) {
+                    if (res.success == true) {
+                        if(typeNotification == 'sweetSuccess') {
+                            sweetSuccess(res.message);
+                        }
+
+                        if (typeNotification == 'notifySuccess') {
+                            notifySuccess(res.message);
+                        }
+
+                        if (typeNotification == 'toastSuccess') {
+                            toastSuccess(res.message);
+                        }
+
+                        if (typeNotification == 'snackbarSuccess') {
+                            snackbarSuccess(res.message);
+                        }
+
+                        if(table !== null)
+                        {
+                            reloadTable(table);
+                        }
+                        if (reload == true) {
+                            setTimeout(function (){
+                                location.reload();
+                            }, 1500);
+                        }
+                    }else {
+                        new sweetError(res.message);
+                    }
+                },
+                error: function (res) {
+                    new sweetError('There is an error');
+                }
+            });
+        }
+    });
+}
+
+// ajax delete
+function ajaxDelete(url, id,reload = false,typeNotification = 'sweetSuccess', table = null, confirmSweetDelete = null) {
     const title = confirmSweetDelete == null ? confirmSweetDeleteDefault.title : confirmSweetDelete.title;
     const body = confirmSweetDelete == null ? confirmSweetDeleteDefault.body : confirmSweetDelete.body;
     const buttonLabel = confirmSweetDelete == null ? confirmSweetDeleteDefault.buttonLabel : confirmSweetDelete.buttonLabel;
