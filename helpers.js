@@ -1,14 +1,16 @@
-const versioningCdnUrl = "V2.0.0";
+const versioningCdnUrl = "V2.0.1";
 const confirmSweetFinishDefault = {
     text : "Click the ? button to return to the previous page",
     cancelButtonFirst : "Continue",
     cancelButtonSecond : "Edit",
-    buttonLabel : "Done"
+    buttonLabel : "Done",
+    buttonConfirmColor : "#6c5ce7",
 }
 const confirmSweetDeleteDefault = {
     title : 'Are you sure?',
     body : 'The data will be deleted and cannot be recovered!',
-    buttonLabel : 'Delete'
+    buttonLabel : 'Delete',
+    buttonConfirmColor : "#6c5ce7",
 }
 
 // read how to use this helper : https://gist.github.com/yaza-putu/6cac370a6fafcc05c3f964427e370504
@@ -67,6 +69,7 @@ function sweetSuccess(message, url = null, confirmSweetFinish = null, reload = f
         const cancelButtonFirst = confirmSweetFinish == null ? confirmSweetFinishDefault.cancelButtonFirst : confirmSweetFinish.cancelButtonFirst;
         const cancelButtonSecond = confirmSweetFinish == null ? confirmSweetFinishDefault.cancelButtonSecond : confirmSweetFinish.cancelButtonSecond;
         const buttonLabel = confirmSweetFinish == null ? confirmSweetFinishDefault.buttonLabel : confirmSweetFinish.buttonLabel;
+        const buttonConfirmColor = confirmSweetFinish == null ? confirmSweetFinishDefault.buttonConfirmColor : confirmSweetFinish.buttonConfirmColor;
 
         Swal.fire({
             title: message,
@@ -74,7 +77,7 @@ function sweetSuccess(message, url = null, confirmSweetFinish = null, reload = f
             text: text.replace('?', buttonLabel),
             showCancelButton: true,
             cancelButtonText: reload ? cancelButtonSecond : cancelButtonFirst,
-            confirmButtonColor: "#ff4d4d",
+            confirmButtonColor: buttonConfirmColor,
             confirmButtonText: buttonLabel
         }).then((result) => {
             if (result.value) {
@@ -413,13 +416,14 @@ function ajaxDel(url, id, table = null, confirmSweetDelete = null) {
     const title = confirmSweetDelete == null ? confirmSweetDeleteDefault.title : confirmSweetDelete.title;
     const body = confirmSweetDelete == null ? confirmSweetDeleteDefault.body : confirmSweetDelete.body;
     const buttonLabel = confirmSweetDelete == null ? confirmSweetDeleteDefault.buttonLabel : confirmSweetDelete.buttonLabel;
+    const buttonConfirmColor = confirmSweetDelete == null ? confirmSweetDeleteDefault.buttonConfirmColor : confirmSweetDelete.buttonConfirmColor;
 
     Swal.fire({
         title: title,
         text: body,
         type: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#ff4d4d",
+        confirmButtonColor: buttonConfirmColor,
         confirmButtonText: buttonLabel
     }).then((result) => {
         if (result.value) {
