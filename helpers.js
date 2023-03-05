@@ -1,4 +1,4 @@
-const versioningCdnUrl = "V2.0.2";
+const versioningCdnUrl = "V2.0.3";
 const confirmSweetFinishDefault = {
     text : "Click the ? button to return to the previous page",
     cancelButtonFirst : "Continue",
@@ -412,7 +412,7 @@ function ajaxGet(url, blockUi = false) {
 }
 
 // ajax Delete
-function ajaxDel(url, id,reload = false, table = null, confirmSweetDelete = null) {
+function ajaxDel(url, id,reload = false,typeNotification = 'sweetSuccess', table = null, confirmSweetDelete = null) {
     const title = confirmSweetDelete == null ? confirmSweetDeleteDefault.title : confirmSweetDelete.title;
     const body = confirmSweetDelete == null ? confirmSweetDeleteDefault.body : confirmSweetDelete.body;
     const buttonLabel = confirmSweetDelete == null ? confirmSweetDeleteDefault.buttonLabel : confirmSweetDelete.buttonLabel;
@@ -434,7 +434,22 @@ function ajaxDel(url, id,reload = false, table = null, confirmSweetDelete = null
                 dataType: 'json',
                 success: function (res) {
                     if (res.success == true) {
-                        new notifySuccess(res.message);
+                        if(typeNotification == 'sweetSuccess') {
+                            sweetSuccess(res.message);
+                        }
+
+                        if (typeNotification == 'notifySuccess') {
+                            notifySuccess(res.message);
+                        }
+
+                        if (typeNotification == 'toastSuccess') {
+                            toastSuccess(res.message);
+                        }
+
+                        if (typeNotification == 'snackbarSuccess') {
+                            snackbarSuccess(res.message);
+                        }
+
                         if(table !== null)
                         {
                             reloadTable(table);
