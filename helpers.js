@@ -1,4 +1,16 @@
-var versioningCdnUrl = "V1.4.17";
+const versioningCdnUrl = "V2.0.0";
+const confirmSweetFinishDefault = {
+    text : "Click the ? button to return to the previous page",
+    cancelButtonFirst : "Continue",
+    cancelButtonSecond : "Edit",
+    buttonLabel : "Done"
+}
+const confirmSweetDeleteDefault = {
+    title : 'Are you sure?',
+    body : 'The data will be deleted and cannot be recovered!',
+    buttonLabel : 'Delete'
+}
+
 // read how to use this helper : https://gist.github.com/yaza-putu/6cac370a6fafcc05c3f964427e370504
 // add csrf token header ajax sending
 $.ajaxSetup({
@@ -49,16 +61,21 @@ function sweetInfo(message) {
 }
 
 // handel success function
-function sweetSuccess(message, url = null, reload = false) {
+function sweetSuccess(message, url = null, confirmSweetFinish = null, reload = false) {
     if (url !== null) {
+        const text = confirmSweetFinish == null ? confirmSweetFinishDefault.text : confirmSweetFinish.text;
+        const cancelButtonFirst = confirmSweetFinish == null ? confirmSweetFinishDefault.cancelButtonFirst : confirmSweetFinish.cancelButtonFirst;
+        const cancelButtonSecond = confirmSweetFinish == null ? confirmSweetFinishDefault.cancelButtonSecond : confirmSweetFinish.cancelButtonSecond;
+        const buttonLabel = confirmSweetFinish == null ? confirmSweetFinishDefault.buttonLabel : confirmSweetFinish.buttonLabel;
+
         Swal.fire({
             title: message,
             type: "success",
-            text: "Klik tombol selesai untuk kembali ke halaman sebelumnya",
+            text: text.replace('?', buttonLabel),
             showCancelButton: true,
-            cancelButtonText: reload ? 'Edit Lagi' :'Buat Lagi',
+            cancelButtonText: reload ? cancelButtonSecond : cancelButtonFirst,
             confirmButtonColor: "#ff4d4d",
-            confirmButtonText: "Selesai"
+            confirmButtonText: buttonLabel
         }).then((result) => {
             if (result.value) {
                 window.location.href = url;
@@ -123,21 +140,21 @@ function toastWarning(message, position = 'top-right') {
 }
 
 // snackbar default
-function snackbar(message) {
+function snackbar(message, position = 'bottom-center') {
     Snackbar.show({
         text: message,
         actionTextColor: '#FFFFFF',
-        pos: 'bottom-center',
+        pos: position,
         actionText: 'Close'
     })
 }
 
 // snackbar success
-function snackbarSuccess(message) {
+function snackbarSuccess(message, position = 'bottom-center') {
     Snackbar.show({
         text: message,
         actionTextColor: '#155724',
-        pos: 'bottom-center',
+        pos: position,
         actionText: 'Close',
         backgroundColor: '#d4edda',
         textColor: '#155724'
@@ -145,11 +162,11 @@ function snackbarSuccess(message) {
 }
 
 // snackbar warning
-function snackbarWarning(message) {
+function snackbarWarning(message, position = 'bottom-center') {
     Snackbar.show({
         text: message,
         actionTextColor: '#856404',
-        pos: 'bottom-center',
+        pos: position,
         actionText: 'Close',
         backgroundColor: '#fff3cd',
         textColor: '#856404'
@@ -157,11 +174,11 @@ function snackbarWarning(message) {
 }
 
 // snackbar error
-function snackbarError(message) {
+function snackbarError(message, position = 'bottom-center') {
     Snackbar.show({
         text: message,
         actionTextColor: '#721c24',
-        pos: 'bottom-center',
+        pos: position,
         actionText: 'Close',
         backgroundColor: '#f8d7da',
         textColor: '#721c24'
@@ -169,13 +186,13 @@ function snackbarError(message) {
 }
 
 // notify success
-function notifySuccess(message) {
+function notifySuccess(message, x = "right", y = "top") {
     notify({
         type: "success", //alert | success | error | warning | info
         title: "Success",
         position: {
-            x: "right", //right | left | center
-            y: "top" //top | bottom | center
+            x: x, //right | left | center
+            y: y //top | bottom | center
         },
         icon: paperPlaneImg,
         message: message,
@@ -185,14 +202,14 @@ function notifySuccess(message) {
 }
 
 // notify warning
-function notifyWarning(message) {
+function notifyWarning(message, x = "right", y = "top") {
     notify({
         type: "warning", //alert | success | error | warning | info
         title: "Warning",
         theme: "dark-theme",
         position: {
-            x: "right", //right | left | center
-            y: "top" //top | bottom | center
+            x: x, //right | left | center
+            y: y //top | bottom | center
         },
         icon: paperPlaneImg,
         message: message,
@@ -201,14 +218,14 @@ function notifyWarning(message) {
     });
 }
 // notify error
-function notifyError(message) {
+function notifyError(message, x = "right", y = "top") {
     notify({
         type: "error", //alert | success | error | warning | info
         title: "Error",
         theme: "dark-theme",
         position: {
-            x: "right", //right | left | center
-            y: "top" //top | bottom | center
+            x: x, //right | left | center
+            y: y //top | bottom | center
         },
         icon: paperPlaneImg,
         message: message,
@@ -281,8 +298,10 @@ function ajaxPost(url , data, button = null) {
 
         if (res.errors || res.invalid) {
             new handleValidation(res.errors||res.invalid);
+        } else if(res.message !== undefined) {
+            new sweetError(res.message);
         } else {
-            new sweetError('Terjadi Kesalahan');
+            new sweetError('There is an error');
         }
 
     }).always(function () {
@@ -348,8 +367,10 @@ function ajaxPostFile(url, data, button = null, showLoading = '#loading-body') {
 
         if (res.errors || res.invalid) {
             new handleValidation(res.errors||res.invalid);
+        } else if(res.message !== undefined) {
+            new sweetError(res.message);
         } else {
-            new sweetError('Terjadi Kesalahan');
+            new sweetError('There is an error');
         }
 
     }).always(function () {
@@ -378,7 +399,7 @@ function ajaxGet(url, blockUi = false) {
     }).done(function (response) {
 
     }).fail(function (response) {
-        new sweetError('Terjadi Kesalahan');
+        new sweetError('There is an error');
     }).always(function () {
         if (blockUi == true) {
             new hideBlockUI();
@@ -388,14 +409,18 @@ function ajaxGet(url, blockUi = false) {
 }
 
 // ajax Delete
-function ajaxDel(url, id, table = null) {
+function ajaxDel(url, id, table = null, confirmSweetDelete = null) {
+    const title = confirmSweetDelete == null ? confirmSweetDeleteDefault.title : confirmSweetDelete.title;
+    const body = confirmSweetDelete == null ? confirmSweetDeleteDefault.body : confirmSweetDelete.body;
+    const buttonLabel = confirmSweetDelete == null ? confirmSweetDeleteDefault.buttonLabel : confirmSweetDelete.buttonLabel;
+
     Swal.fire({
-        title: "Apakah kamu yakin?",
-        text: "Data akan dihapus dan tidak akan bisa dikembalikan!",
+        title: title,
+        text: body,
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#ff4d4d",
-        confirmButtonText: "Hapus"
+        confirmButtonText: buttonLabel
     }).then((result) => {
         if (result.value) {
             $.ajax({
@@ -415,7 +440,7 @@ function ajaxDel(url, id, table = null) {
                     }
                 },
                 error: function (res) {
-                    new sweetError('Terjadi Kesalahan');
+                    new sweetError('There is an error');
                 }
             });
         }
@@ -423,13 +448,13 @@ function ajaxDel(url, id, table = null) {
 }
 
 // convert currency
-$('.convert-currency').on('keyup', function () {
+$(document).on('keyup','.convert-currency', function () {
     $(this).val(formatRupiah(this.value, "Rp. "));
 })
 
 /* Fungsi formatRupiah */
 function formatRupiah(angka, prefix) {
-    var number_string = angka.replace(/[^,\d]/g, "").toString(),
+    var number_string = angka.toString().replace(/[^,\d]/g, ""),
         split = number_string.split(","),
         sisa = split[0].length % 3,
         rupiah = split[0].substr(0, sisa),
@@ -493,9 +518,9 @@ function datatable(table, url, columns= [], columnDefs = [], responsive = true) 
 }
 
 // show block UI
-function showBlockUI() {
+function showBlockUI(message = "Please wait a moment ...") {
     $.blockUI({
-        message: 'Mohon Tunggu Sebentar ...',
+        message: message,
         css: {
             'z-index': 10002,
             border: 'none',
