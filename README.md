@@ -1,5 +1,5 @@
 # Important
-- require jquery 3.*
+- Minimun jquery  version 3.x
 - current support only framwork css bootstrap for auto handel validations form
 
 # how to manual install
